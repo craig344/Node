@@ -1,6 +1,8 @@
-const fs = require('fs');
+const EventEmitter = require('events');
+const emitter = new EventEmitter();
 
-var files = fs.readdir('.',function(err,files){
-    if(err) console.log('Error: ', err);
-    else console.log('Files: ' + files);
-});
+emitter.on('messageLogged', function(){
+    console.log("Message logged");
+})
+
+emitter.emit('messageLogged');
